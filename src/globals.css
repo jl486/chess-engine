@@ -1,0 +1,9 @@
+@import "tailwindcss";
+
+:root {
+    --tile-light: #f0d9b5;
+    --tile-dark: #b58863;
+    --tile-size: 80px;  
+    --background-color: #212121;
+}
+
