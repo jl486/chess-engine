@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import Piece from "./Piece";
 
 export default function Pieces() {
@@ -26,16 +27,42 @@ export default function Pieces() {
     positions[6][i] = "wp";
   }
 
+  const ref = useRef<HTMLDivElement>(null);
+
+  const onDrop: React.DragEventHandler<HTMLDivElement> = (e: React.DragEvent<HTMLDivElement>) => {
+    const rect = ref.current?.getBoundingClientRect();
+    if (rect) {
+      const { width, left, top } = rect;
+      const size = width / 8;
+      const y = Math.floor((e.clientX - left) / size);
+      const x = 7 - Math.floor((e.clientY - top) / size);
+      console.log(x, y);
+      
+      const [type, rank, file] = e.dataTransfer.getData("text").split(",");
+      console.log(type, rank, file);
+    }
+    
+  }
+
+  const onDragOver: React.DragEventHandler<HTMLDivElement> = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+  }
+
   return (
-    <div className="absolute top-0 left-[calc(0.3*80px)] bottom-[calc(0.3*80px)] right-0 w-[640px] h-[640px]">
-      {positions.map((rank, i) =>
-        rank.map((_, j) =>
-          positions[i][j] ? (
+    <div
+      ref={ref}
+      className="absolute top-0 left-[calc(0.3*80px)] bottom-[calc(0.3*80px)] right-0 w-[640px] h-[640px]"
+      onDrop={onDrop}
+      onDragOver={onDragOver}
+    >
+      {positions.map((rank, r) =>
+        rank.map((_, f) =>
+          positions[r][f] ? (
             <Piece
-              key={`${i}-${j}`}
-              rank={i}
-              file={j}
-              type={positions[i][j]}
+              key={`${r}-${f}`}
+              rank={r}
+              file={f}
+              type={positions[r][f]}
             />
           ) : null
         )

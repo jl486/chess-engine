@@ -10,11 +10,11 @@ export default function Board() {
     <div className="grid relative grid-cols-[calc(0.3*80px)_calc(8*80px)]">
       <RankLabels ranks={ranks} />
       <div className="grid grid-cols-8 grid-rows-8 w-[640px] h-[640px] select-none">
-        {ranks.map((_, i) =>
-          files.map((_, j) => (
+        {ranks.map((_, r) =>
+          files.map((_, f) => (
             <div
-              key={`${i}-${j}`}
-              className={`w-[80px] h-[80px] ${(i + j) % 2 === 0 ? "bg-[#f0d9b5]" : "bg-[#b58863]"
+              key={`${r}-${f}`}
+              className={`w-[80px] h-[80px] ${(r + f) % 2 === 0 ? "bg-[#f0d9b5]" : "bg-[#b58863]"
                 }`}
             ></div>
           ))
