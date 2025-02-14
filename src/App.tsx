@@ -26,7 +26,7 @@ function WebsocketClient() {
 }
 
 function App() {
-  WebsocketClient();
+  //WebsocketClient();
   return (
     <>
       <Board></Board>

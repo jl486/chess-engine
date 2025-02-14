@@ -4,7 +4,7 @@ import React from "react";
 export default function Piece(
   { rank, file, type }: { rank: number, file: number, type: string }
 ) {
-  const onDragStart: React.DragEventHandler<HTMLDivElement> = (e: React.DragEvent<HTMLDivElement>) => {
+  const onDragStart = (e: React.DragEvent<HTMLDivElement>): void => {
     e.dataTransfer.effectAllowed = "move";
     e.dataTransfer?.setData("text/plain", `${type},${rank},${file}`);
     setTimeout(() => {
