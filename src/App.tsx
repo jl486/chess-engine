@@ -1,5 +1,5 @@
-import './App.css'
-import Board from './components/Board/Board'
+import './App.css';
+import Board from './components/Board';
 
 function WebsocketClient() {
   const socket = new WebSocket("ws://localhost:5173/");
@@ -26,7 +26,7 @@ function WebsocketClient() {
 }
 
 function App() {
-  WebsocketClient();
+  //WebsocketClient();
   return (
     <>
       <Board></Board>
